@@ -51,7 +51,8 @@ function gestionClicCase(event) {
   }
 
   mettreAJourCase(caseCliquee, indexCase);
-  changerJoueur();
+  //changerJoeur();
+  verificationResultat();
 }
 
 function mettreAJourCase(cell, index) {
@@ -60,7 +61,60 @@ function mettreAJourCase(cell, index) {
   cell.style.color = tourJoueur === "X" ? "#27ae60" : "#e74c3c";
 }
 
-function changerJoueur() {
-  tourJoueur = tourJoueur === "X" ? "O" : "X";
-  messageElement.innerHTML = `Au tour de <p style="color: ${tourJoueur === "X" ? "#27ae60" : "#e74c3c"}">${tourJoueur}</p> !`;
+// function changerJoueur() {
+//   tourJoueur = tourJoueur === "X" ? "O" : "X";
+//   messageElement.innerHTML = `Au tour de <p style="color: ${tourJoueur === "X" ? "#27ae60" : "#e74c3c"}">${tourJoueur}</p> !`;
+// }
+
+/* =========================
+   4. DÉTECTION DE VICTOIRE
+   ========================= */
+
+const conditionsVictoire = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6],
+];
+
+function verificationResultat() {
+  let tourGagnant = false;
+
+  for (let i = 0; i < conditionsVictoire.length; i++) {
+    const condition = conditionsVictoire[i];
+
+    let a = etatJeu[condition[0]];
+    let b = etatJeu[condition[1]];
+    let c = etatJeu[condition[2]];
+
+    if (a === "" || b === "" || c === "") {
+      continue;
+    }
+
+    if (a === b && b === c) {
+      tourGagnant = true;
+      break;
+    }
+  }
+
+  if (tourGagnant) {
+    messageElement.innerHTML = `Le joueur ${tourJoueur} a gagné ! 🎉`;
+    messageElement.style.color = "#27ae60";
+    jeuActif = false;
+    return;
+  }
+
+  let matchNul = !etatJeu.includes("");
+  if (matchNul) {
+    messageElement.innerText = "Match Nul !";
+    messageElement.style.color = "orange";
+    jeuActif = false;
+    return;
+  }
+
+  changerJoueur();
 }
