@@ -1,0 +1,140 @@
+/* =========================================
+    RESET & BASE
+    Réinitialisation basique du navigateur
+========================================= */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px; /* 1rem = 16px par défaut */
+}
+
+/* =========================================
+    VARIABLES GLOBALES (:root)
+    Stockage des couleurs, tailles et polices
+========================================= */
+:root {
+  --bg-page: #f4f4f4;
+  --bg-card: #ffffff;
+
+  --text-primary: #333333;
+  --text-secondary: #555555;
+  --color-success: #27ae60;
+  --color-success-dark: #219150;
+
+  --shadow-soft: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --radius-main: 8px;
+  --radius-large: 10px;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-page);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  text-align: center;
+}
+
+/* =========================================
+    Zones des scores
+========================================= */
+#score-board {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.player-card {
+  background: var(--bg-card);
+  width: 48%;
+  padding: 15px;
+  border-radius: var(--radius-main);
+  box-shadow: var(--shadow-soft);
+}
+
+.player-name {
+  margin: 0;
+  color: var(--text-secondary);
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.score {
+  margin: 10px 0 0 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+/* =========================================
+    Zones de message
+========================================= */
+#message {
+  height: 40px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+/* =========================================
+    Grille de jeu
+========================================= */
+#game-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.case {
+  background: var(--bg-card);
+  height: 100px;
+  border-radius: var(--radius-large);
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  font-family: "Arial Black", sans-serif;
+  color: var(--text-primary);
+  transition: transform 0.2s;
+}
+
+.case:hover {
+  background-color: #f9f9f9;
+  transform: scale(1.02);
+}
+
+/* =========================================
+    Bouton
+========================================= */
+#restart-btn {
+  background-color: var(--color-success);
+  color: white;
+  border: none;
+  padding: 15px;
+  width: 100%;
+  border-radius: var(--radius-main);
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#restart-btn:hover {
+  background-color: var(--color-success-dark);
+}

@@ -1,42 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jeu du Morpion (Tic Tac Toe)</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
+    <!-- Reset CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <main class="container">
-        <section id="score-board">
-            <div class="player-card" id="player1">
-                <p class="player-name">x Player1</p>
-                <p class="score" id="score1">0</p>
-            </div>
-            <div class="player-card" id="player2">
-                <p class="player-name">o Player2</p>
-                <p class="score" id="score2">0</p>
-            </div>
-        </section>
+      <section id="score-board">
+        <div class="player-card" id="player1">
+          <p class="player-name">x Player1</p>
+          <p class="score" id="score1">0</p>
+        </div>
+        <div class="player-card" id="player2">
+          <p class="player-name">o Player2</p>
+          <p class="score" id="score2">0</p>
+        </div>
+      </section>
 
-        <div id="message" class="message-box"></div>
+      <div id="message" class="message-box"></div>
 
-        <section id="game-grid">
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-        </section>
+      <section id="game-grid">
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+      </section>
 
-        <button id="restart-btn">Reset Game</button>
+      <button id="restart-btn">Reset Game</button>
     </main>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
