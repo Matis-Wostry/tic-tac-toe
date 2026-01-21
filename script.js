@@ -51,7 +51,6 @@ function gestionClicCase(event) {
   }
 
   mettreAJourCase(caseCliquee, indexCase);
-  //changerJoeur();
   verificationResultat();
 }
 
@@ -61,10 +60,10 @@ function mettreAJourCase(cell, index) {
   cell.style.color = tourJoueur === "X" ? "#27ae60" : "#e74c3c";
 }
 
-// function changerJoueur() {
-//   tourJoueur = tourJoueur === "X" ? "O" : "X";
-//   messageElement.innerHTML = `Au tour de <p style="color: ${tourJoueur === "X" ? "#27ae60" : "#e74c3c"}">${tourJoueur}</p> !`;
-// }
+function changerJoueur() {
+  tourJoueur = tourJoueur === "X" ? "O" : "X";
+  messageElement.innerHTML = `Au tour de <p style="color: ${tourJoueur === "X" ? "#27ae60" : "#e74c3c"}">${tourJoueur}</p> !`;
+}
 
 /* =========================
    4. DÉTECTION DE VICTOIRE
@@ -105,6 +104,14 @@ function verificationResultat() {
     messageElement.innerHTML = `Le joueur ${tourJoueur} a gagné ! 🎉`;
     messageElement.style.color = "#27ae60";
     jeuActif = false;
+
+    scores[tourJoueur]++;
+    if (tourJoueur === "X") {
+      scorePlayer1.innerText = scores["X"];
+    } else {
+      scorePlayer2.innerText = scores["O"];
+    }
+
     return;
   }
 
@@ -117,4 +124,24 @@ function verificationResultat() {
   }
 
   changerJoueur();
+}
+
+/* =========================
+   5. RECOMMENCER LE JEU
+========================= */
+
+restartBtn.addEventListener('click', recommencerJeu);
+
+function recommencerJeu() {
+    jeuActif = true;
+    tourJoueur = "X";
+    etatJeu = ["", "", "", "", "", "", "", "", ""];
+
+    messageElement.innerHTML = "Au tour de X !";
+    messageElement.style.color = "";
+
+    document.querySelectorAll('.case').forEach(cell => {
+        cell.innerHTML = "";
+        cell.style.color = "";
+    });
 }
