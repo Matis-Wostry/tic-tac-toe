@@ -28,29 +28,39 @@ console.log("Éléments sélectionnés :", cases);
    3. LOGIQUE DU JEU (CLICS)
    ========================= */
 cases.forEach((cell, index) => {
-    cell.setAttribute('data-index', index);  
-    cell.addEventListener('click', gestionClicCase);
+  cell.setAttribute("data-index", index);
+  cell.addEventListener("click", gestionClicCase);
 });
 
 function gestionClicCase(event) {
-    const caseCliquee = event.target;
-    const indexCase = caseCliquee.getAttribute('data-index');
+  const caseCliquee = event.target;
+  const indexCase = caseCliquee.getAttribute("data-index");
 
-    if (etatJeu[indexCase] !== "" || !jeuActif) {
-        return;
+  if (etatJeu[indexCase] !== "" || !jeuActif) {
+    if (jeuActif) {
+      messageElement.innerText = "Case déjà prise !";
+      messageElement.style.color = "red";
+
+      setTimeout(() => {
+        messageElement.innerText = `Au tour de ${tourJoueur} !`;
+        messageElement.style.color = "";
+      }, 1000);
     }
 
-    mettreAJourCase(caseCliquee, indexCase);
-    changerJoueur();
+    return;
+  }
+
+  mettreAJourCase(caseCliquee, indexCase);
+  changerJoueur();
 }
 
 function mettreAJourCase(cell, index) {
-    etatJeu[index] = tourJoueur;
-    cell.innerHTML = tourJoueur;
-    cell.style.color = tourJoueur === 'X' ? '#27ae60' : '#e74c3c';
+  etatJeu[index] = tourJoueur;
+  cell.innerHTML = tourJoueur;
+  cell.style.color = tourJoueur === "X" ? "#27ae60" : "#e74c3c";
 }
 
 function changerJoueur() {
-    tourJoueur = tourJoueur === "X" ? "O" : "X";
-    messageElement.innerHTML = `Au tour de <p style="color: ${tourJoueur === 'X' ? '#27ae60' : '#e74c3c'}">${tourJoueur}</p> !`;
+  tourJoueur = tourJoueur === "X" ? "O" : "X";
+  messageElement.innerHTML = `Au tour de <p style="color: ${tourJoueur === "X" ? "#27ae60" : "#e74c3c"}">${tourJoueur}</p> !`;
 }
